@@ -1,6 +1,7 @@
 const path = require('path')
 const webpack = require('webpack')
 const HTMLWebpackPlugin = require('html-webpack-plugin')
+const ExtractTextWebpackPlugin = require('extract-text-webpack-plugin')
 
 // Determine if development or not
 const dev = process.env.NODE_ENV !== 'production' && process.argv.indexOf('-p') === -1
@@ -10,6 +11,12 @@ const HTMLWebpackPluginConfig = new HTMLWebpackPlugin({
   template: path.join(__dirname, '/src/index.html'),
   filename: 'index.html',
   inject: 'body'
+})
+
+// SASS => CSS
+const ExtractSassPluginConfig = new ExtractTextWebpackPlugin({
+  filename: '[name].[contenthash].css',
+  disable: process.env.NODE_ENV !== 'production'
 })
 
 // Plugin config
@@ -55,15 +62,21 @@ module.exports = {
   },
   // Loaders
   module: {
-    loaders: [
+    rules: [
       { // JSX
         test: /\.jsx?$/,
         exclude: /node_modules/,
-        loaders: ['babel-loader']
+        loader: 'babel-loader'
       },
       { // SCSS
         test: /\.scss$/,
-        loader: 'style-loader!css-loader!sass-loader'
+        use: ExtractSassPluginConfig.extract({
+          use: [
+            { loader: 'css-loader' },
+            { loader: 'sass-loader' }
+          ],
+          fallback: 'style-loader'
+        })
       },
       { // Images
         test: /\.(jpe?g|png|gif|svg)$/i,
@@ -86,10 +99,12 @@ module.exports = {
   plugins:
     dev ? [ // Development - use hot reload and named modules
       HTMLWebpackPluginConfig,
+      ExtractSassPluginConfig,
       new webpack.HotModuleReplacementPlugin(),
       new webpack.NamedModulesPlugin()
     ] : [ // Production - generate public build
       HTMLWebpackPluginConfig,
+      ExtractSassPluginConfig,
       DefinePluginConfig,
       UglifyJsPluginConfig
     ]
