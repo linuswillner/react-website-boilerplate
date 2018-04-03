@@ -12,7 +12,7 @@ To use this, simply clone the repository to a folder and start editing.
 
 Scripts:
 
-**npm start**: Starts the development web server on **localhost:3000**.
+**npm start**: Starts the development web server on **localhost:8000**.
 **npm test**: Runs ESLint style checks.
 **npm run build**: Creates a production build.
 
