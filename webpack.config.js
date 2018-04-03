@@ -24,18 +24,6 @@ const DefinePluginConfig = new webpack.DefinePlugin({
   'process.env.NODE_ENV': JSON.stringify('production')
 })
 
-// UglifyJS
-const UglifyJsPluginConfig = new webpack.optimize.UglifyJsPlugin({
-  beautify: false,
-  mangle: {
-    screw_ie8: true
-  },
-  compress: {
-    screw_ie8: true
-  },
-  comments: false
-})
-
 // Webpack config
 module.exports = {
   // Development server
@@ -105,7 +93,6 @@ module.exports = {
     ] : [ // Production - generate public build
       HTMLWebpackPluginConfig,
       ExtractSassPluginConfig,
-      DefinePluginConfig,
-      UglifyJsPluginConfig
+      DefinePluginConfig
     ]
 }
