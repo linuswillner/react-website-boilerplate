@@ -15,7 +15,7 @@ const HTMLWebpackPluginConfig = new HTMLWebpackPlugin({
 
 // SASS => CSS
 const ExtractSassPluginConfig = new ExtractTextWebpackPlugin({
-  filename: '[name].[contenthash].css',
+  filename: '[name].[hash].css',
   disable: process.env.NODE_ENV !== 'production'
 })
 
@@ -84,6 +84,7 @@ module.exports = {
     filename: 'index.js',
     path: path.join(__dirname, '/build')
   },
+  mode: dev ? 'development' : 'production',
   plugins:
     dev ? [ // Development - use hot reload and named modules
       HTMLWebpackPluginConfig,
