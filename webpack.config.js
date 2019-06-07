@@ -37,8 +37,7 @@ module.exports = {
   // Development server
   devServer: {
     host: 'localhost',
-    port: '8000',
-    quiet: true, // Remove console spam
+    port: 8000,
     hot: true,
     headers: {
       'Access-Control-Allow-Origin': '*' // Allow CORS
@@ -92,7 +91,10 @@ module.exports = {
 
   // Extension config
   resolve: {
-    extensions: ['.js', '.jsx']
+    extensions: ['.js', '.jsx'],
+    alias: {
+      'react-dom': '@hot-loader/react-dom' // DOM patches for react-hot-loader
+    }
   },
 
   // Production build

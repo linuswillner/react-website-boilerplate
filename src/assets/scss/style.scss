@@ -1,14 +1,10 @@
 .container {
-    margin: auto;
-    text-align: center;
-    max-width: 600px;
-
-    &__image {
-        width: 100px;
-        height: auto;
-    }
+  margin: auto;
+  text-align: center;
+  max-width: 600px;
 }
 
-.left {
-    text-align: left;
+.image {
+  width: 100px;
+  height: auto;
 }
