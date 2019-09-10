@@ -4,6 +4,7 @@ const HTMLWebpackPlugin = require('html-webpack-plugin')
 const ExtractCSSWebpackPlugin = require('mini-css-extract-plugin')
 const OptimizeCSSWebpackPlugin = require('optimize-css-assets-webpack-plugin')
 const OptimizeJSWebpackPlugin = require('terser-webpack-plugin')
+const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 
 const dev = process.env.NODE_ENV !== 'production' || process.argv.indexOf('-p') === -1
 
@@ -31,6 +32,25 @@ const EnvironmentConfig = new webpack.DefinePlugin({
     NODE_ENV: JSON.stringify('production')
   }
 })
+
+const devPlugins = [
+  HTMLInjecterConfig,
+  CSSExtracterConfig,
+  new webpack.HotModuleReplacementPlugin(),
+  new webpack.NamedModulesPlugin()
+]
+
+const prodPlugins = [
+  HTMLInjecterConfig,
+  CSSExtracterConfig,
+  EnvironmentConfig,
+  new webpack.ProgressPlugin()
+]
+
+// If clean build is desired, add CleanWebpackPlugin
+if (process.argv.indexOf('-c') !== -1) prodPlugins.push(new CleanWebpackPlugin())
+
+const createAlias = modulePath => path.resolve(__dirname, modulePath)
 
 // Webpack config
 module.exports = {
@@ -94,6 +114,7 @@ module.exports = {
     extensions: ['.js', '.jsx'],
     alias: {
       'react-dom': '@hot-loader/react-dom' // DOM patches for react-hot-loader
+      // Internal shortcuts
     }
   },
 
@@ -104,15 +125,5 @@ module.exports = {
   },
 
   mode: dev ? 'development' : 'production',
-  plugins:
-    dev ? [
-      HTMLInjecterConfig,
-      CSSExtracterConfig,
-      new webpack.HotModuleReplacementPlugin(),
-      new webpack.NamedModulesPlugin()
-    ] : [
-      HTMLInjecterConfig,
-      CSSExtracterConfig,
-      EnvironmentConfig
-    ]
+  plugins: dev ? devPlugins : prodPlugins
 }
