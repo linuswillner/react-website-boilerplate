@@ -12,8 +12,8 @@ To use this, simply clone the repository to a folder and start editing.
 
 Scripts:
 
-**npm start**: Starts the development web server on **localhost:8000**.
-**npm test**: Runs ESLint style checks.
+**npm start**: Starts the development web server on **localhost:8000**.  
+**npm test**: Runs ESLint style checks.  
 **npm run build**: Creates a production build.
 
 ## Structure
@@ -30,5 +30,5 @@ Scripts:
 ├── .eslintignore - ESLint ignores
 ├── .babelrc - Babel configuration
 ├── webpack.config.js - Webpack configuration
-└── README.md this file
+└── README.md - This file
 ```
