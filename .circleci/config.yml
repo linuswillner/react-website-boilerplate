@@ -10,14 +10,14 @@ jobs:
           key: dependency-cache-{{ checksum "package.json" }}
       - run:
           name: Install dependencies
-          command: npm install
+          command: npm i
       - save_cache:
           key: dependency-cache-{{ checksum "package.json" }}
           paths:
             - node_modules
       - run:
-          name: Run tests
+          name: Test
           command: npm test
       - run:
-          name: Generate test build
+          name: Build
           command: npm run build
