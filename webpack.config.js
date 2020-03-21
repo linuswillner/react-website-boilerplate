@@ -50,7 +50,8 @@ const prodPlugins = [
 // If clean build is desired, add CleanWebpackPlugin
 if (process.argv.indexOf('-c') !== -1) prodPlugins.push(new CleanWebpackPlugin())
 
-const createAlias = modulePath => path.resolve(__dirname, modulePath)
+// Helper for easier alias creation
+// const createAlias = modulePath => path.resolve(__dirname, modulePath)
 
 // Webpack config
 module.exports = {
