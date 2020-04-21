@@ -49,6 +49,7 @@
   },
   "dependencies": {
     "@hot-loader/react-dom": "^16.13.0",
+    "eslint-config-standard-react": "^9.2.0",
     "prop-types": "^15.7.2",
     "react": "^16.13.1",
     "react-dom": "^16.13.1"
