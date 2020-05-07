@@ -1,0 +1,15 @@
+{
+  "plugins": [
+    "stylelint-scss",
+    "stylelint-declaration-block-no-ignored-properties",
+    "stylelint-use-nesting",
+    "stylelint-selector-no-empty",
+    "stylelint-no-unused-selectors",
+    "stylelint-no-unsupported-browser-features"
+  ],
+  "extends": "stylelint-config-recommended",
+  "rules": {
+    "at-rule-no-unknown": null,
+    "scss/at-rule-no-unknown": true
+  }
+}
