@@ -50,7 +50,7 @@
     "stylelint-no-unused-selectors": "^1.0.27",
     "stylelint-scss": "^3.17.2",
     "stylelint-selector-no-empty": "^1.0.7",
-    "stylelint-use-nesting": "^2.0.0",
+    "stylelint-use-nesting": "^3.0.0",
     "terser-webpack-plugin": "^3.0.1",
     "url-loader": "^4.1.0",
     "webpack": "^4.43.0",
