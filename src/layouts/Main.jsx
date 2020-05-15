@@ -4,8 +4,6 @@ import reactLogo from '../assets/images/React-icon.png'
 
 export default class Main extends Component {
   render () {
-    cosnoel.log()
-
     return (
       <main className='container'>
         <div>
