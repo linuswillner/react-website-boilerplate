@@ -51,7 +51,7 @@
     "stylelint-config-recommended": "^3.0.0",
     "stylelint-declaration-block-no-ignored-properties": "^2.3.0",
     "stylelint-no-unsupported-browser-features": "^4.0.0",
-    "stylelint-no-unused-selectors": "^1.0.27",
+    "stylelint-no-unused-selectors": "^1.0.28",
     "stylelint-scss": "^3.17.2",
     "stylelint-selector-no-empty": "^1.0.7",
     "stylelint-use-nesting": "^3.0.0",
