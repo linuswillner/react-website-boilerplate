@@ -47,7 +47,7 @@
     "react-hot-loader": "^4.12.21",
     "sass-loader": "^8.0.2",
     "style-loader": "^1.2.1",
-    "stylelint": "^13.4.1",
+    "stylelint": "^13.5.0",
     "stylelint-config-recommended": "^3.0.0",
     "stylelint-declaration-block-no-ignored-properties": "^2.3.0",
     "stylelint-no-unsupported-browser-features": "^4.0.0",
