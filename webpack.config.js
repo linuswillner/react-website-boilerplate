@@ -45,8 +45,7 @@ const devPlugins = [
   HTMLInjecterConfig,
   CSSExtracterConfig,
   new ErrorOverlayWebpackPlugin(),
-  new webpack.HotModuleReplacementPlugin(),
-  new webpack.NamedModulesPlugin()
+  new webpack.HotModuleReplacementPlugin()
 ]
 
 const prodPlugins = [
@@ -80,6 +79,7 @@ module.exports = {
 
   // Production optimisers
   optimization: {
+    namedModules: true,
     minimizer: dev ? [] : [JSOptimizerConfig, CSSOptimizerConfig]
   },
 
