@@ -15,10 +15,8 @@
   },
   "extends": [
     "standard",
+    "standard-jsx",
     "standard-react"
-  ],
-  "plugins": [
-    "standard"
   ],
   "rules": {
     "react/jsx-closing-bracket-location": "off",

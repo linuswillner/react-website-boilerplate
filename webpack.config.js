@@ -79,7 +79,7 @@ module.exports = {
 
   // Production optimisers
   optimization: {
-    moduleIds: "named",
+    moduleIds: 'named',
     minimizer: dev ? [] : [JSOptimizerConfig, CSSOptimizerConfig]
   },
 
