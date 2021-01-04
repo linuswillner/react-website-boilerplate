@@ -43,8 +43,7 @@ const EnvironmentConfig = new webpack.DefinePlugin({
 const sharedPlugins = [
   HTMLInjecterConfig,
   CSSExtracterConfig,
-  new NodePolyfillWebpackPlugin(),
-  new webpack.ProgressPlugin()
+  new NodePolyfillWebpackPlugin()
 ]
 
 const devPlugins = [
@@ -57,10 +56,10 @@ const prodPlugins = [
 ]
 
 // If clean build is desired, add CleanWebpackPlugin
-if (process.env.CLEAN_BUILD) prodPlugins.push(new CleanWebpackPlugin())
+if (process.env.CLEAN_BUILD) sharedPlugins.push(new CleanWebpackPlugin())
 
 // If in CI, don't output progress to stdout to reduce log clutter
-if (!process.env.CI) prodPlugins.push(ProgressBarConfig)
+if (!process.env.CI) sharedPlugins.push(ProgressBarConfig, new webpack.ProgressPlugin())
 
 // Helper for easier alias creation
 // const createAlias = modulePath => path.resolve(__dirname, modulePath)
