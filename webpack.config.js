@@ -43,7 +43,8 @@ const EnvironmentConfig = new webpack.DefinePlugin({
 const sharedPlugins = [
   HTMLInjecterConfig,
   CSSExtracterConfig,
-  new NodePolyfillWebpackPlugin()
+  new NodePolyfillWebpackPlugin(),
+  new webpack.ProgressPlugin()
 ]
 
 const devPlugins = [
