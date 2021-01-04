@@ -8,6 +8,7 @@ const OptimizeJSWebpackPlugin = require('terser-webpack-plugin')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const ProgressBarWebpackPlugin = require('progress-bar-webpack-plugin')
 const ErrorOverlayWebpackPlugin = require('error-overlay-webpack-plugin')
+const NodePolyfillWebpackPlugin = require('node-polyfill-webpack-plugin')
 
 const dev = process.env.NODE_ENV !== 'production' || process.argv.indexOf('-p') === -1
 
@@ -23,9 +24,7 @@ const CSSExtracterConfig = new ExtractCSSWebpackPlugin({
 })
 
 const JSOptimizerConfig = new OptimizeJSWebpackPlugin({
-  cache: true,
-  parallel: true,
-  sourceMap: true
+  parallel: true
 })
 
 const CSSOptimizerConfig = new OptimizeCSSWebpackPlugin({})
@@ -41,22 +40,23 @@ const EnvironmentConfig = new webpack.DefinePlugin({
   }
 })
 
-const devPlugins = [
+const sharedPlugins = [
   HTMLInjecterConfig,
   CSSExtracterConfig,
+  new NodePolyfillWebpackPlugin()
+]
+
+const devPlugins = [
   new ErrorOverlayWebpackPlugin(),
   new webpack.HotModuleReplacementPlugin()
 ]
 
 const prodPlugins = [
-  HTMLInjecterConfig,
-  CSSExtracterConfig,
-  EnvironmentConfig,
-  new webpack.ProgressPlugin()
+  EnvironmentConfig
 ]
 
 // If clean build is desired, add CleanWebpackPlugin
-if (process.argv.indexOf('-c') !== -1) prodPlugins.push(new CleanWebpackPlugin())
+if (process.env.CLEAN_BUILD) prodPlugins.push(new CleanWebpackPlugin())
 
 // If in CI, don't output progress to stdout to reduce log clutter
 if (!process.env.CI) prodPlugins.push(ProgressBarConfig)
@@ -79,7 +79,7 @@ module.exports = {
 
   // Production optimisers
   optimization: {
-    namedModules: true,
+    moduleIds: "named",
     minimizer: dev ? [] : [JSOptimizerConfig, CSSOptimizerConfig]
   },
 
@@ -88,14 +88,6 @@ module.exports = {
     'react-hot-loader/patch',
     path.join(__dirname, '/src/index.jsx')
   ],
-
-  // Dummies for native Node modules not present in browser scope
-  node: {
-    fs: 'empty',
-    net: 'empty',
-    tls: 'empty',
-    crypto: 'empty'
-  },
 
   // Loaders
   module: {
@@ -128,7 +120,7 @@ module.exports = {
     extensions: ['.js', '.jsx'],
     alias: {
       'react-dom': '@hot-loader/react-dom' // DOM patches for react-hot-loader
-      // Internal shortcuts
+      // Internal alias definitions go below here
     }
   },
 
@@ -140,5 +132,5 @@ module.exports = {
 
   devtool: 'cheap-module-source-map',
   mode: dev ? 'development' : 'production',
-  plugins: dev ? devPlugins : prodPlugins
+  plugins: sharedPlugins.concat(dev ? devPlugins : prodPlugins)
 }
