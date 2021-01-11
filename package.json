@@ -58,7 +58,7 @@
     "stylelint-scss": "^3.18.0",
     "stylelint-selector-no-empty": "^1.0.7",
     "stylelint-use-nesting": "^3.0.0",
-    "terser-webpack-plugin": "^5.0.3",
+    "terser-webpack-plugin": "^5.1.1",
     "url-loader": "^4.1.1",
     "webpack": "^5.11.1",
     "webpack-cli": "^4.3.1",
