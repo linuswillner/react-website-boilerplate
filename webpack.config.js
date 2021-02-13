@@ -10,7 +10,7 @@ const ProgressBarWebpackPlugin = require('progress-bar-webpack-plugin')
 const ErrorOverlayWebpackPlugin = require('error-overlay-webpack-plugin')
 const NodePolyfillWebpackPlugin = require('node-polyfill-webpack-plugin')
 
-const dev = process.env.NODE_ENV !== 'production' || process.argv.indexOf('-p') === -1
+const dev = process.env.NODE_ENV !== 'production'
 
 const HTMLInjecterConfig = new HTMLWebpackPlugin({
   template: path.join(__dirname, '/src/index.html'),
