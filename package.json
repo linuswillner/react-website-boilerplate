@@ -30,7 +30,7 @@
     "cross-env": "^7.0.3",
     "css-loader": "^5.0.2",
     "error-overlay-webpack-plugin": "^0.4.2",
-    "eslint": "^7.19.0",
+    "eslint": "^7.20.0",
     "eslint-config-standard": "^16.0.2",
     "eslint-config-standard-jsx": "^10.0.0",
     "eslint-config-standard-react": "^11.0.1",
